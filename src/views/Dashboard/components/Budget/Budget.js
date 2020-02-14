@@ -8,7 +8,9 @@ import MoneyIcon from '@material-ui/icons/Money';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%'
+    height: '100%',
+    boxShadow:
+      '9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px rgba(255,255,255, 0.5)'
   },
   content: {
     alignItems: 'center',

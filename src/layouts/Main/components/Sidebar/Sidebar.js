@@ -99,10 +99,7 @@ const Sidebar = props => {
           pages={pages}
         />
         <Divider className={classes.divider} />
-        <Button
-          color="primary"
-          variant="contained"
-        >
+        <Button variant="contained">
           <AddICon style={{ paddingleft: 2, paddingBottom: 2 }} />
           New Contract
         </Button>
