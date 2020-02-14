@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -21,8 +20,9 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import mockData from './data';
+import JsonMock from './data_json';
 import { StatusBullet } from 'components';
+import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -55,7 +55,7 @@ const LatestOrders = props => {
 
   const classes = useStyles();
 
-  const [orders] = useState(mockData);
+  const [orders] = useState(JsonMock);
 
   return (
     <Card
@@ -69,10 +69,10 @@ const LatestOrders = props => {
             size="small"
             variant="outlined"
           >
-            New entry
+            New Contact
           </Button>
         }
-        title="Latest Orders"
+        title="Latest Contract"
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -81,8 +81,8 @@ const LatestOrders = props => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Order Ref</TableCell>
-                  <TableCell>Customer</TableCell>
+                  <TableCell>Contract ID</TableCell>
+                  <TableCell>Company</TableCell>
                   <TableCell sortDirection="desc">
                     <Tooltip
                       enterDelay={300}
@@ -92,24 +92,23 @@ const LatestOrders = props => {
                         active
                         direction="desc"
                       >
-                        Date
+                        Due Date
                       </TableSortLabel>
                     </Tooltip>
                   </TableCell>
                   <TableCell>Status</TableCell>
+                  <TableCell>Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {orders.map(order => (
                   <TableRow
                     hover
-                    key={order.id}
+                    key={uuid()}
                   >
-                    <TableCell>{order.ref}</TableCell>
-                    <TableCell>{order.customer.name}</TableCell>
-                    <TableCell>
-                      {moment(order.createdAt).format('DD/MM/YYYY')}
-                    </TableCell>
+                    <TableCell>{order.contract_id}</TableCell>
+                    <TableCell>{order.company_name}</TableCell>
+                    <TableCell>{order.end_at}</TableCell>
                     <TableCell>
                       <div className={classes.statusContainer}>
                         <StatusBullet
@@ -120,6 +119,7 @@ const LatestOrders = props => {
                         {order.status}
                       </div>
                     </TableCell>
+                    <TableCell>{order.amounut}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
