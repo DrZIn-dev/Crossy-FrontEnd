@@ -10,7 +10,8 @@ import InputIcon from '@material-ui/icons/Input';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    boxShadow: 'none'
+    boxShadow: 'none',
+    backgroundColor: '#14195b'
   },
   flexGrow: {
     flexGrow: 1
@@ -38,6 +39,10 @@ const Topbar = props => {
             alt="Logo"
             src="/images/logos/logo--white.svg"
           /> */}
+          <img
+            alt="logo"
+            src="/images/logos/crossy-logo-text 1.svg"
+          />
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
