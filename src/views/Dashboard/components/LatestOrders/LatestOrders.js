@@ -21,8 +21,10 @@ import {
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
+import JsonMock from './data_json';
 import mockData from './data';
 import { StatusBullet } from 'components';
+import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -55,7 +57,7 @@ const LatestOrders = props => {
 
   const classes = useStyles();
 
-  const [orders] = useState(mockData);
+  const [orders] = useState(JsonMock);
 
   return (
     <Card
@@ -104,13 +106,11 @@ const LatestOrders = props => {
                 {orders.map(order => (
                   <TableRow
                     hover
-                    key={order.id}
+                    key={uuid()}
                   >
-                    <TableCell>{order.ref}</TableCell>
-                    <TableCell>{order.customer.name}</TableCell>
-                    <TableCell>
-                      {moment(order.createdAt).format('DD/MM/YYYY')}
-                    </TableCell>
+                    <TableCell>{order.contract_id}</TableCell>
+                    <TableCell>{order.company_name}</TableCell>
+                    <TableCell>{order.end_at}</TableCell>
                     <TableCell>
                       <div className={classes.statusContainer}>
                         <StatusBullet
@@ -121,7 +121,7 @@ const LatestOrders = props => {
                         {order.status}
                       </div>
                     </TableCell>
-                    <TableCell>{order.amount}</TableCell>
+                    <TableCell>{order.amounut}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
