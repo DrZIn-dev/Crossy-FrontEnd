@@ -2,9 +2,11 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Divider, Drawer } from '@material-ui/core';
+import { Divider, Drawer, Button } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
+import List from '@material-ui/icons/ListAlt';
+import AddICon from '@material-ui/icons/Add';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import ImageIcon from '@material-ui/icons/Image';
@@ -51,7 +53,7 @@ const Sidebar = props => {
     {
       title: 'Users',
       href: '/users',
-      icon: <PeopleIcon />
+      icon: <List />
     }
     // {
     //   title: 'Products',
@@ -103,6 +105,14 @@ const Sidebar = props => {
           className={classes.nav}
           pages={pages}
         />
+        <Divider className={classes.divider} />
+        <Button
+          color="primary"
+          variant="contained"
+        >
+          <AddICon style={{ paddingleft: 2, paddingBottom: 2 }} />
+          Contract
+        </Button>
         {/* <UpgradePlan /> */}
       </div>
     </Drawer>
