@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
@@ -10,7 +10,7 @@ import {
   LatestProducts,
   LatestOrders
 } from './components';
-
+import axios from 'axios';
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(4)
@@ -19,7 +19,16 @@ const useStyles = makeStyles(theme => ({
 
 const Dashboard = () => {
   const classes = useStyles();
-
+  const [data, setData] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'https://hn.algolia.com/api/v1/search?query=redux'
+      );
+      setData(result.data);
+    };
+    fetchData();
+  }, []);
   return (
     <div className={classes.root}>
       <Grid
