@@ -37,7 +37,7 @@ const Routes = () => {
         layout={MainLayout}
         path="/users"
       />
-      <RouteWithLayout
+      {/* <RouteWithLayout
         component={ProductListView}
         exact
         layout={MainLayout}
@@ -78,7 +78,7 @@ const Routes = () => {
         exact
         layout={MinimalLayout}
         path="/sign-in"
-      />
+      /> */}
       <RouteWithLayout
         component={NotFoundView}
         exact
