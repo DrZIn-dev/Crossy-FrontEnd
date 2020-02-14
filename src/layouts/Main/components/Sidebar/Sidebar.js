@@ -111,7 +111,7 @@ const Sidebar = props => {
           variant="contained"
         >
           <AddICon style={{ paddingleft: 2, paddingBottom: 2 }} />
-          Contract
+          New Contract
         </Button>
         {/* <UpgradePlan /> */}
       </div>
