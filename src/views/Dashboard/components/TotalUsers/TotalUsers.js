@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import RemoveIcon from '@material-ui/icons/Remove';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
 
+import MockData from './data_json';
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100%'
@@ -34,8 +37,11 @@ const useStyles = makeStyles(theme => ({
   differenceIcon: {
     color: theme.palette.success.dark
   },
-  differenceValue: {
-    color: theme.palette.success.dark,
+  differenceIconDown: {
+    color: theme.palette.error.dark
+  },
+  differenceValueDown: {
+    color: theme.palette.error.dark,
     marginRight: theme.spacing(1)
   }
 }));
@@ -64,7 +70,7 @@ const TotalUsers = props => {
             >
               TOTAL COMPANY
             </Typography>
-            <Typography variant="h3">160</Typography>
+            <Typography variant="h3">{MockData.total}</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -73,13 +79,46 @@ const TotalUsers = props => {
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          <ArrowUpwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            16%
-          </Typography>
+          {(() => {
+            switch (MockData.status) {
+              case 'down':
+                return (
+                  <>
+                    <ArrowDownwardIcon className={classes.differenceIconDown} />
+                    <Typography
+                      className={classes.differenceValueDown}
+                      variant="body2"
+                    >
+                      {MockData.change}%
+                    </Typography>
+                  </>
+                );
+              case 'up':
+                return (
+                  <>
+                    <ArrowUpwardIcon className={classes.differenceIcon} />
+                    <Typography
+                      className={classes.differenceValue}
+                      variant="body2"
+                    >
+                      {MockData.change}%
+                    </Typography>
+                  </>
+                );
+              default:
+                return (
+                  <>
+                    <RemoveIcon className={classes.differenceIcon} />
+                    <Typography
+                      className={classes.differenceValue}
+                      variant="body2"
+                    >
+                      {MockData.change}%
+                    </Typography>
+                  </>
+                );
+            }
+          })()}
           <Typography
             className={classes.caption}
             variant="caption"
