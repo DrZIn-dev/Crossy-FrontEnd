@@ -19,6 +19,7 @@ import {
   TablePagination
 } from '@material-ui/core';
 
+import { StatusBullet } from 'components';
 import { getInitials } from 'helpers';
 
 const useStyles = makeStyles(theme => ({
@@ -38,6 +39,13 @@ const useStyles = makeStyles(theme => ({
   },
   actions: {
     justifyContent: 'flex-end'
+  },
+  statusContainer: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  status: {
+    marginRight: theme.spacing(1)
   }
 }));
 
@@ -92,6 +100,11 @@ const UsersTable = props => {
     setRowsPerPage(event.target.value);
   };
 
+  const statusColors = {
+    delivered: 'success',
+    pending: 'info',
+    refunded: 'danger'
+  };
   return (
     <Card
       {...rest}
@@ -114,11 +127,13 @@ const UsersTable = props => {
                       onChange={handleSelectAll}
                     />
                   </TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Location</TableCell>
-                  <TableCell>Phone</TableCell>
-                  <TableCell>Registration date</TableCell>
+                  <TableCell>Company</TableCell>
+                  <TableCell>Contract ID</TableCell>
+                  <TableCell>Exchange Rate</TableCell>
+                  <TableCell>Create At</TableCell>
+                  <TableCell>Due Date</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -139,24 +154,32 @@ const UsersTable = props => {
                     </TableCell>
                     <TableCell>
                       <div className={classes.nameContainer}>
-                        <Avatar
+                        {/* <Avatar
                           className={classes.avatar}
                           src={user.avatarUrl}
                         >
                           {getInitials(user.name)}
-                        </Avatar>
-                        <Typography variant="body1">{user.name}</Typography>
+                        </Avatar> */}
+                        <Typography variant="body1">
+                          {user.company_name}
+                        </Typography>
                       </div>
                     </TableCell>
-                    <TableCell>{user.email}</TableCell>
+                    <TableCell> {user.contract_id}</TableCell>
+                    <TableCell>{user.exchange_rate}</TableCell>
+                    <TableCell>{user.created_at}</TableCell>
+                    <TableCell>{user.end_at}</TableCell>
                     <TableCell>
-                      {user.address.city}, {user.address.state},{' '}
-                      {user.address.country}
+                      <div className={classes.statusContainer}>
+                        <StatusBullet
+                          className={classes.status}
+                          color={statusColors[user.status]}
+                          size="sm"
+                        />
+                        {user.status}
+                      </div>
                     </TableCell>
-                    <TableCell>{user.phone}</TableCell>
-                    <TableCell>
-                      {moment(user.createdAt).format('DD/MM/YYYY')}
-                    </TableCell>
+                    <TableCell>{user.amounut}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
