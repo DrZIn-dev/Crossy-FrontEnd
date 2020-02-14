@@ -69,10 +69,10 @@ const LatestOrders = props => {
             size="small"
             variant="outlined"
           >
-            New entry
+            New Contact
           </Button>
         }
-        title="Latest Orders"
+        title="Latest Contract"
       />
       <Divider />
       <CardContent className={classes.content}>
@@ -81,8 +81,8 @@ const LatestOrders = props => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Order Ref</TableCell>
-                  <TableCell>Customer</TableCell>
+                  <TableCell>Contract ID</TableCell>
+                  <TableCell>Company</TableCell>
                   <TableCell sortDirection="desc">
                     <Tooltip
                       enterDelay={300}
@@ -92,11 +92,12 @@ const LatestOrders = props => {
                         active
                         direction="desc"
                       >
-                        Date
+                        Due Date
                       </TableSortLabel>
                     </Tooltip>
                   </TableCell>
                   <TableCell>Status</TableCell>
+                  <TableCell>Amount</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -120,6 +121,7 @@ const LatestOrders = props => {
                         {order.status}
                       </div>
                     </TableCell>
+                    <TableCell>{order.amount}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -9,7 +9,8 @@ export default [
       name: 'Ekaterina Tankova'
     },
     createdAt: 1555016400000,
-    status: 'pending'
+    status: 'pending',
+    amount: 233333
   },
   {
     id: uuid(),
@@ -19,7 +20,8 @@ export default [
       name: 'Cao Yu'
     },
     createdAt: 1555016400000,
-    status: 'delivered'
+    status: 'delivered',
+    amount: 233333
   },
   {
     id: uuid(),
@@ -29,7 +31,8 @@ export default [
       name: 'Alexa Richardson'
     },
     createdAt: 1554930000000,
-    status: 'refunded'
+    status: 'refunded',
+    amount: 233333
   },
   {
     id: uuid(),
@@ -39,7 +42,8 @@ export default [
       name: 'Anje Keizer'
     },
     createdAt: 1554757200000,
-    status: 'pending'
+    status: 'pending',
+    amount: 233333
   },
   {
     id: uuid(),
@@ -49,7 +53,8 @@ export default [
       name: 'Clarke Gillebert'
     },
     createdAt: 1554670800000,
-    status: 'delivered'
+    status: 'delivered',
+    amount: 233333
   },
   {
     id: uuid(),
@@ -59,6 +64,7 @@ export default [
       name: 'Adam Denisov'
     },
     createdAt: 1554670800000,
-    status: 'delivered'
+    status: 'delivered',
+    amount: 233333
   }
 ];
