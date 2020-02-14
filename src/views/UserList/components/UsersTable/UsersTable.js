@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/styles';
 import {
   Card,
   CardActions,
   CardContent,
-  Avatar,
   Checkbox,
   Table,
   TableBody,
@@ -20,7 +18,6 @@ import {
 } from '@material-ui/core';
 
 import { StatusBullet } from 'components';
-import { getInitials } from 'helpers';
 
 const useStyles = makeStyles(theme => ({
   root: {},

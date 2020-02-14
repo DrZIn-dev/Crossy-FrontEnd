@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -22,7 +21,6 @@ import {
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import JsonMock from './data_json';
-import mockData from './data';
 import { StatusBullet } from 'components';
 import uuid from 'uuid';
 

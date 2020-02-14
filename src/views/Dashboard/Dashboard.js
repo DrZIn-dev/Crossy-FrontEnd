@@ -7,8 +7,6 @@ import {
   TotalUsers,
   TasksProgress,
   TotalProfit,
-  LatestSales,
-  UsersByDevice,
   LatestProducts,
   LatestOrders
 } from './components';
