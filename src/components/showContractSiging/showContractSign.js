@@ -9,7 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 
-export default ShowContractSigning = props => {
+export default ShowContractSign = props => {
     const {
         contractor,
         validation,
@@ -19,6 +19,10 @@ export default ShowContractSigning = props => {
         rate,
         status
     } = props.data
+
+    const handleClose = () => {
+      props.close();
+    };
     return (
         <div>
                 <Dialog
@@ -102,12 +106,6 @@ export default ShowContractSigning = props => {
                     onClick={handleClose}
                 >
                     Cancel
-                </Button>
-                <Button
-                    color="primary"
-                    onClick={onSubmit}
-                >
-                    Submit
                 </Button>
                 </DialogActions>
             </Dialog>
