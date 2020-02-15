@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
@@ -62,7 +62,7 @@ const statusColors = {
 };
 
 const LatestOrders = props => {
-  const { className, ...rest } = props;
+  const { contractLst, className, ...rest } = props;
   const classes = useStyles();
 
   const [orders] = useState(JsonMock);
@@ -75,7 +75,7 @@ const LatestOrders = props => {
       anonymous: false,
       inputs: [
         {
-          indexed: false,
+          indexed: true,
           internalType: 'uint256',
           name: 'id',
           type: 'uint256'
@@ -115,9 +115,40 @@ const LatestOrders = props => {
           internalType: 'uint256',
           name: 'initialDate',
           type: 'uint256'
+        },
+        {
+          indexed: false,
+          internalType: 'enum Forward.State',
+          name: 'state',
+          type: 'uint8'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'currencyRate',
+          type: 'uint256'
         }
       ],
       name: 'ContractCreated',
+      type: 'event'
+    },
+    {
+      anonymous: false,
+      inputs: [
+        {
+          indexed: true,
+          internalType: 'uint256',
+          name: 'id',
+          type: 'uint256'
+        },
+        {
+          indexed: false,
+          internalType: 'enum Forward.State',
+          name: 'state',
+          type: 'uint8'
+        }
+      ],
+      name: 'UpdateState',
       type: 'event'
     },
     {
@@ -164,6 +195,16 @@ const LatestOrders = props => {
         {
           internalType: 'uint256',
           name: 'initialDate',
+          type: 'uint256'
+        },
+        {
+          internalType: 'enum Forward.State',
+          name: 'state',
+          type: 'uint8'
+        },
+        {
+          internalType: 'uint256',
+          name: 'currencyRate',
           type: 'uint256'
         }
       ],
@@ -213,6 +254,11 @@ const LatestOrders = props => {
           internalType: 'uint256',
           name: '_purchase_amount',
           type: 'uint256'
+        },
+        {
+          internalType: 'uint256',
+          name: '_currencyRate',
+          type: 'uint256'
         }
       ],
       name: 'createContract',
@@ -223,6 +269,26 @@ const LatestOrders = props => {
           type: 'uint256'
         }
       ],
+      payable: false,
+      stateMutability: 'nonpayable',
+      type: 'function'
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: 'uint256',
+          name: '_id',
+          type: 'uint256'
+        },
+        {
+          internalType: 'uint256',
+          name: '_setState',
+          type: 'uint256'
+        }
+      ],
+      name: 'setState',
+      outputs: [],
       payable: false,
       stateMutability: 'nonpayable',
       type: 'function'
@@ -272,16 +338,73 @@ const LatestOrders = props => {
       payable: false,
       stateMutability: 'view',
       type: 'function'
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          internalType: 'uint256',
+          name: '_id',
+          type: 'uint256'
+        }
+      ],
+      name: 'getContractState',
+      outputs: [
+        {
+          internalType: 'enum Forward.State',
+          name: 'state',
+          type: 'uint8'
+        }
+      ],
+      payable: false,
+      stateMutability: 'view',
+      type: 'function'
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          internalType: 'uint256',
+          name: '_id',
+          type: 'uint256'
+        }
+      ],
+      name: 'getContractCurrency',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: 'currencyRate',
+          type: 'uint256'
+        }
+      ],
+      payable: false,
+      stateMutability: 'view',
+      type: 'function'
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: 'getCount',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: 'length',
+          type: 'uint256'
+        }
+      ],
+      payable: false,
+      stateMutability: 'view',
+      type: 'function'
     }
   ];
-  const address = '0x2369eaC786D77EA16E47270706EE2995195c51dD';
+  const address = '0x0707B506CA656039cc3C64A8c21f52147d3d4C14';
   const rpcURL = 'http://127.0.0.1:7545';
 
   const web3 = new Web3(rpcURL);
-  web3.eth.getAccounts().then(console.log);
+
+  const contract = new web3.eth.Contract(abi, address);
 
   const fetchData = id => {
-    const contract = new web3.eth.Contract(abi, address);
     contract.methods.getContract(id).call((err, result) => {
       setData({ name: result.issuer });
     });
@@ -331,7 +454,8 @@ const LatestOrders = props => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {orders.map(order => (
+                  {console.log('hello ' + contractLst)}
+                  {contractLst.map(order => (
                     <TableRow
                       hover
                       key={order.id}
