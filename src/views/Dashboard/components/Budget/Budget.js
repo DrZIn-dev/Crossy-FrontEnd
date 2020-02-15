@@ -83,7 +83,10 @@ const Budget = props => {
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          <DifferentialStatus status={'up'} />
+          <DifferentialStatus
+            change={12}
+            status={'up'}
+          />
           <Typography
             className={classes.caption}
             variant="caption"
