@@ -9,15 +9,7 @@ import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import ShowContractSign from '../../../../components/showContractSign';
 
-const data = {
-  'contractor' : 'A',
-  'validator' : 'B',
-  'product' : 'Mac 16 pro',
-  'pieces' : 20,
-  'amount' : (50000 * 20),
-  'rate' : 29,
-  'status' : 'process'
-}
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,6 +33,18 @@ const Topbar = props => {
 
   const [OpenShowContractSing, setOpenShowContractSing] = useState(false)
 
+
+  // showContractSign
+  const data = {
+    'contractor' : 'A',
+    'validator' : 'B',
+    'product' : 'Mac 16 pro',
+    'pieces' : 20,
+    'amount' : (50000 * 20),
+    'rate' : 29,
+    'status' : 'process'
+  }
+
   const handleClickOpen = () => {
     setOpenShowContractSing(true);
   };
@@ -48,6 +52,8 @@ const Topbar = props => {
   const handleClose = () => {
     setOpenShowContractSing(false);
   };
+
+  // showContractSign
 
   return (
     <AppBar
@@ -80,7 +86,9 @@ const Topbar = props => {
             <InputIcon />
           </IconButton>
         </Hidden>
+        {/* showContractSign */}
         <ShowContractSign open={OpenShowContractSing} close={handleClose} data={data}/>
+        {/* showContractSign */}
         <Hidden lgUp>
           <IconButton
             color="inherit"
