@@ -17,13 +17,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const data = [
-  { text: 'inbox ' },
-  {
-    text: 'email'
-  }
-];
-
 const NotificationsContainer = props => {
   const { className, ...rest } = props;
   const classes = useStyles();
