@@ -294,6 +294,7 @@ const LatestOrders = props => {
 
   const handleClose = () => {
     setOpen(false);
+    setData({});
   };
 
   return (
