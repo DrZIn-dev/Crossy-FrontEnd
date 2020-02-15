@@ -62,18 +62,7 @@ const LatestOrders = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
-      <CardHeader
-        action={
-          <Button
-            color="primary"
-            size="small"
-            variant="outlined"
-          >
-            New Contact
-          </Button>
-        }
-        title="Latest Contract"
-      />
+      <CardHeader title="Latest Contract" />
       <Divider />
       <CardContent className={classes.content}>
         <PerfectScrollbar>
