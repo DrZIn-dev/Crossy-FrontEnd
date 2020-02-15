@@ -30,7 +30,7 @@ const Routes = () => {
         component={UserListView}
         exact
         layout={MainLayout}
-        path="/users"
+        path="/Contract"
       />
       {/* <RouteWithLayout
         component={ProductListView}

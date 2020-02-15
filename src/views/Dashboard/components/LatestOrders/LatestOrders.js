@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
@@ -275,21 +275,16 @@ const LatestOrders = props => {
   const web3 = new Web3(rpcURL);
   web3.eth.getAccounts().then(console.log);
 
-  useEffect(() => {
-    const fetchData = () => {
-      const contract = new web3.eth.Contract(abi, address);
-      contract.methods.name().call((err, result) => {
-        setData({ name: result });
-      });
-    };
-
-    return () => {
-      fetchData();
-    };
-  }, [open, abi, web3.eth.Contract]);
+  const fetchData = () => {
+    const contract = new web3.eth.Contract(abi, address);
+    contract.methods.name().call((err, result) => {
+      setData({ name: result });
+    });
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
+    fetchData();
   };
 
   const handleClose = () => {
@@ -310,6 +305,7 @@ const LatestOrders = props => {
               <Table>
                 <TableHead>
                   <TableRow>
+                    <TableCell>Status</TableCell>
                     <TableCell>Contract ID</TableCell>
                     <TableCell>Company</TableCell>
                     <TableCell sortDirection="desc">
@@ -325,7 +321,7 @@ const LatestOrders = props => {
                         </TableSortLabel>
                       </Tooltip>
                     </TableCell>
-                    <TableCell>Status</TableCell>
+
                     <TableCell>Amount</TableCell>
                   </TableRow>
                 </TableHead>
@@ -336,9 +332,6 @@ const LatestOrders = props => {
                       key={uuid()}
                       onClick={handleClickOpen}
                     >
-                      <TableCell>{order.contract_id}</TableCell>
-                      <TableCell>{order.company_name}</TableCell>
-                      <TableCell>{order.end_at}</TableCell>
                       <TableCell>
                         <div className={classes.statusContainer}>
                           <StatusBullet
@@ -349,6 +342,9 @@ const LatestOrders = props => {
                           {order.status}
                         </div>
                       </TableCell>
+                      <TableCell>{order.contract_id}</TableCell>
+                      <TableCell>{order.company_name}</TableCell>
+                      <TableCell>{order.end_at}</TableCell>
                       <TableCell>{order.amounut}</TableCell>
                     </TableRow>
                   ))}
