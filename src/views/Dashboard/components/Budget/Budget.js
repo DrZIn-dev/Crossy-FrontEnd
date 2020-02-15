@@ -3,11 +3,8 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import RemoveIcon from '@material-ui/icons/Remove';
 import MoneyIcon from '@material-ui/icons/Money';
-
+import { DifferentialStatus } from 'components';
 import MockData from './data_json';
 
 const useStyles = makeStyles(theme => ({
@@ -86,47 +83,7 @@ const Budget = props => {
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          {(() => {
-            switch (MockData.status) {
-              case 'down':
-                return (
-                  <>
-                    <ArrowDownwardIcon className={classes.differenceIcon} />
-                    <Typography
-                      className={classes.differenceValue}
-                      variant="body2"
-                    >
-                      {MockData.change}%
-                    </Typography>
-                  </>
-                );
-              case 'up':
-                return (
-                  <>
-                    <ArrowUpwardIcon className={classes.differenceIconUp} />
-                    <Typography
-                      className={classes.differenceValueUp}
-                      variant="body2"
-                    >
-                      {MockData.change}%
-                    </Typography>
-                  </>
-                );
-              default:
-                return (
-                  <>
-                    <RemoveIcon className={classes.differenceIconUp} />
-                    <Typography
-                      className={classes.differenceValueUp}
-                      variant="body2"
-                    >
-                      {MockData.change}%
-                    </Typography>
-                  </>
-                );
-            }
-          })()}
-
+          <DifferentialStatus status={'up'} />
           <Typography
             className={classes.caption}
             variant="caption"
