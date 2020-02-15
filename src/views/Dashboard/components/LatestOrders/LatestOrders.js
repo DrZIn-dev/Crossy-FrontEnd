@@ -33,7 +33,6 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import JsonMock from './data_json';
 import { StatusBullet } from 'components';
-import uuid from 'uuid';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -73,219 +72,224 @@ const LatestOrders = props => {
 
   const abi = [
     {
-      constant: true,
-      inputs: [],
-      name: 'mintingFinished',
-      outputs: [{ name: '', type: 'bool' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: 'name',
-      outputs: [{ name: '', type: 'string' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [
-        { name: '_spender', type: 'address' },
-        { name: '_value', type: 'uint256' }
-      ],
-      name: 'approve',
-      outputs: [],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: 'totalSupply',
-      outputs: [{ name: '', type: 'uint256' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [
-        { name: '_from', type: 'address' },
-        { name: '_to', type: 'address' },
-        { name: '_value', type: 'uint256' }
-      ],
-      name: 'transferFrom',
-      outputs: [],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: 'decimals',
-      outputs: [{ name: '', type: 'uint256' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: 'unpause',
-      outputs: [{ name: '', type: 'bool' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [
-        { name: '_to', type: 'address' },
-        { name: '_amount', type: 'uint256' }
-      ],
-      name: 'mint',
-      outputs: [{ name: '', type: 'bool' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: 'paused',
-      outputs: [{ name: '', type: 'bool' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [{ name: '_owner', type: 'address' }],
-      name: 'balanceOf',
-      outputs: [{ name: 'balance', type: 'uint256' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: 'finishMinting',
-      outputs: [{ name: '', type: 'bool' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [],
-      name: 'pause',
-      outputs: [{ name: '', type: 'bool' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: 'owner',
-      outputs: [{ name: '', type: 'address' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [],
-      name: 'symbol',
-      outputs: [{ name: '', type: 'string' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [
-        { name: '_to', type: 'address' },
-        { name: '_value', type: 'uint256' }
-      ],
-      name: 'transfer',
-      outputs: [],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [
-        { name: '_to', type: 'address' },
-        { name: '_amount', type: 'uint256' },
-        { name: '_releaseTime', type: 'uint256' }
-      ],
-      name: 'mintTimelocked',
-      outputs: [{ name: '', type: 'address' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: true,
-      inputs: [
-        { name: '_owner', type: 'address' },
-        { name: '_spender', type: 'address' }
-      ],
-      name: 'allowance',
-      outputs: [{ name: 'remaining', type: 'uint256' }],
-      payable: false,
-      type: 'function'
-    },
-    {
-      constant: false,
-      inputs: [{ name: 'newOwner', type: 'address' }],
-      name: 'transferOwnership',
-      outputs: [],
-      payable: false,
-      type: 'function'
-    },
-    {
       anonymous: false,
       inputs: [
-        { indexed: true, name: 'to', type: 'address' },
-        { indexed: false, name: 'value', type: 'uint256' }
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'id',
+          type: 'uint256'
+        },
+        {
+          indexed: false,
+          internalType: 'string',
+          name: 'issuer',
+          type: 'string'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'amount',
+          type: 'uint256'
+        },
+        {
+          indexed: false,
+          internalType: 'string',
+          name: 'duration',
+          type: 'string'
+        },
+        {
+          indexed: false,
+          internalType: 'string',
+          name: 'purchaseName',
+          type: 'string'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'purchaseAmount',
+          type: 'uint256'
+        },
+        {
+          indexed: false,
+          internalType: 'uint256',
+          name: 'initialDate',
+          type: 'uint256'
+        }
       ],
-      name: 'Mint',
-      type: 'event'
-    },
-    { anonymous: false, inputs: [], name: 'MintFinished', type: 'event' },
-    { anonymous: false, inputs: [], name: 'Pause', type: 'event' },
-    { anonymous: false, inputs: [], name: 'Unpause', type: 'event' },
-    {
-      anonymous: false,
-      inputs: [
-        { indexed: true, name: 'owner', type: 'address' },
-        { indexed: true, name: 'spender', type: 'address' },
-        { indexed: false, name: 'value', type: 'uint256' }
-      ],
-      name: 'Approval',
+      name: 'ContractCreated',
       type: 'event'
     },
     {
-      anonymous: false,
+      constant: true,
       inputs: [
-        { indexed: true, name: 'from', type: 'address' },
-        { indexed: true, name: 'to', type: 'address' },
-        { indexed: false, name: 'value', type: 'uint256' }
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256'
+        }
       ],
-      name: 'Transfer',
-      type: 'event'
+      name: 'contracts',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: 'id',
+          type: 'uint256'
+        },
+        {
+          internalType: 'string',
+          name: 'issuer',
+          type: 'string'
+        },
+        {
+          internalType: 'uint256',
+          name: 'amount',
+          type: 'uint256'
+        },
+        {
+          internalType: 'string',
+          name: 'duration',
+          type: 'string'
+        },
+        {
+          internalType: 'string',
+          name: 'purchaseName',
+          type: 'string'
+        },
+        {
+          internalType: 'uint256',
+          name: 'purchaseAmount',
+          type: 'uint256'
+        },
+        {
+          internalType: 'uint256',
+          name: 'initialDate',
+          type: 'uint256'
+        }
+      ],
+      payable: false,
+      stateMutability: 'view',
+      type: 'function'
+    },
+    {
+      constant: true,
+      inputs: [],
+      name: 'count',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256'
+        }
+      ],
+      payable: false,
+      stateMutability: 'view',
+      type: 'function'
+    },
+    {
+      constant: false,
+      inputs: [
+        {
+          internalType: 'string',
+          name: '_issuer',
+          type: 'string'
+        },
+        {
+          internalType: 'uint256',
+          name: '_amount',
+          type: 'uint256'
+        },
+        {
+          internalType: 'string',
+          name: '_duration',
+          type: 'string'
+        },
+        {
+          internalType: 'string',
+          name: '_purchase_name',
+          type: 'string'
+        },
+        {
+          internalType: 'uint256',
+          name: '_purchase_amount',
+          type: 'uint256'
+        }
+      ],
+      name: 'createContract',
+      outputs: [
+        {
+          internalType: 'uint256',
+          name: '',
+          type: 'uint256'
+        }
+      ],
+      payable: false,
+      stateMutability: 'nonpayable',
+      type: 'function'
+    },
+    {
+      constant: true,
+      inputs: [
+        {
+          internalType: 'uint256',
+          name: '_id',
+          type: 'uint256'
+        }
+      ],
+      name: 'getContract',
+      outputs: [
+        {
+          internalType: 'string',
+          name: 'issuer',
+          type: 'string'
+        },
+        {
+          internalType: 'string',
+          name: 'purchaseName',
+          type: 'string'
+        },
+        {
+          internalType: 'uint256',
+          name: 'duration',
+          type: 'uint256'
+        },
+        {
+          internalType: 'string',
+          name: 'purchaseAmount',
+          type: 'string'
+        },
+        {
+          internalType: 'uint256',
+          name: 'amount',
+          type: 'uint256'
+        },
+        {
+          internalType: 'uint256',
+          name: 'initialDate',
+          type: 'uint256'
+        }
+      ],
+      payable: false,
+      stateMutability: 'view',
+      type: 'function'
     }
   ];
-  const address = '0xd26114cd6EE289AccF82350c8d8487fedB8A0C07';
-  const rpcURL =
-    'https://mainnet.infura.io/v3/35d85ee041f8443ba0b37fad6d7e8332';
+  const address = '0x2369eaC786D77EA16E47270706EE2995195c51dD';
+  const rpcURL = 'http://127.0.0.1:7545';
 
   const web3 = new Web3(rpcURL);
   web3.eth.getAccounts().then(console.log);
 
-  const fetchData = () => {
+  const fetchData = id => {
     const contract = new web3.eth.Contract(abi, address);
-    contract.methods.name().call((err, result) => {
-      setData({ name: result });
+    contract.methods.getContract(id).call((err, result) => {
+      setData({ name: result.issuer });
     });
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = id => {
     setOpen(true);
-    fetchData();
+    fetchData(id);
   };
 
   const handleClose = () => {
@@ -318,7 +322,7 @@ const LatestOrders = props => {
                           active
                           direction="desc"
                         >
-                          Due Date
+                          Duration
                         </TableSortLabel>
                       </Tooltip>
                     </TableCell>
@@ -329,8 +333,8 @@ const LatestOrders = props => {
                   {orders.map(order => (
                     <TableRow
                       hover
-                      key={uuid()}
-                      onClick={handleClickOpen}
+                      key={order.id}
+                      onClick={() => handleClickOpen(order.id)}
                     >
                       <TableCell>
                         <div className={classes.statusContainer}>
@@ -342,10 +346,10 @@ const LatestOrders = props => {
                           {order.status}
                         </div>
                       </TableCell>
-                      <TableCell>{order.contract_id}</TableCell>
-                      <TableCell>{order.company_name}</TableCell>
-                      <TableCell>{order.end_at}</TableCell>
-                      <TableCell>{order.amounut}</TableCell>
+                      <TableCell>{order.id}</TableCell>
+                      <TableCell>{order.issuer}</TableCell>
+                      <TableCell>{order.duration}</TableCell>
+                      <TableCell>{order.amount}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
