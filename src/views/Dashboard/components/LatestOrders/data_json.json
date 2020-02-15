@@ -6,7 +6,7 @@
     "exchange_rate": "$30.00",
     "created_at": "03/08/81",
     "end_at": "09/10/21",
-    "status": "refunded",
+    "status": "pending",
     "amounut": "$3,261,297,090.00"
   },
   {
@@ -16,7 +16,7 @@
     "exchange_rate": "$34.00",
     "created_at": "28/03/88",
     "end_at": "12/03/20",
-    "status": "refunded",
+    "status": "process",
     "amounut": "$1,970,758,040.00"
   },
   {
@@ -26,7 +26,7 @@
     "exchange_rate": "$34.00",
     "created_at": "07/10/77",
     "end_at": "06/04/21",
-    "status": "pending",
+    "status": "complete",
     "amounut": "$1,250,163,151.00"
   },
   {
@@ -36,7 +36,7 @@
     "exchange_rate": "$33.00",
     "created_at": "27/04/92",
     "end_at": "13/11/22",
-    "status": "pending",
+    "status": "cancle",
     "amounut": "$2,331,399,361.00"
   },
   {
@@ -66,7 +66,7 @@
     "exchange_rate": "$31.00",
     "created_at": "17/01/00",
     "end_at": "30/06/22",
-    "status": "refunded",
+    "status": "complete",
     "amounut": "$443,191,468.00"
   }
 ]

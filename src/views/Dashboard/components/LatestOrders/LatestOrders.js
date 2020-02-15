@@ -56,9 +56,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const statusColors = {
-  delivered: 'success',
-  pending: 'info',
-  refunded: 'danger'
+  complete: 'success',
+  process: 'info',
+  cancle: 'danger',
+  pending: 'warning'
 };
 
 const LatestOrders = props => {
@@ -321,7 +322,6 @@ const LatestOrders = props => {
                         </TableSortLabel>
                       </Tooltip>
                     </TableCell>
-
                     <TableCell>Amount</TableCell>
                   </TableRow>
                 </TableHead>
