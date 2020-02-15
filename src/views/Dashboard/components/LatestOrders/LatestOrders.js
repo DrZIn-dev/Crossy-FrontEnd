@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
@@ -275,17 +275,21 @@ const LatestOrders = props => {
   const web3 = new Web3(rpcURL);
   web3.eth.getAccounts().then(console.log);
 
-  
-  const fetchData = () => {
-    const contract = new web3.eth.Contract(abi, address);
-    contract.methods.name().call((err, result) => {
-      setData({ name: result });
-    });
-  };
+  useEffect(() => {
+    const fetchData = () => {
+      const contract = new web3.eth.Contract(abi, address);
+      contract.methods.name().call((err, result) => {
+        setData({ name: result });
+      });
+    };
+
+    return () => {
+      fetchData();
+    };
+  }, [open, abi, web3.eth.Contract]);
 
   const handleClickOpen = () => {
     setOpen(true);
-    fetchData();
   };
 
   const handleClose = () => {
