@@ -16,13 +16,13 @@ import {
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const schema = {
-  firstName: {
+  userName: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 32
     }
   },
-  lastName: {
+  displayName: {
     presence: { allowEmpty: false, message: 'is required' },
     length: {
       maximum: 32
@@ -262,30 +262,32 @@ const SignUp = props => {
                 </Typography>
                 <TextField
                   className={classes.textField}
-                  error={hasError('firstName')}
+                  error={hasError('userName')}
                   fullWidth
                   helperText={
-                    hasError('firstName') ? formState.errors.firstName[0] : null
+                    hasError('userName') ? formState.errors.userName[0] : null
                   }
-                  label="First name"
-                  name="firstName"
+                  label="Username"
+                  name="userName"
                   onChange={handleChange}
                   type="text"
-                  value={formState.values.firstName || ''}
+                  value={formState.values.userName || ''}
                   variant="outlined"
                 />
                 <TextField
                   className={classes.textField}
-                  error={hasError('lastName')}
+                  error={hasError('displayName')}
                   fullWidth
                   helperText={
-                    hasError('lastName') ? formState.errors.lastName[0] : null
+                    hasError('displayName')
+                      ? formState.errors.displayName[0]
+                      : null
                   }
-                  label="Last name"
-                  name="lastName"
+                  label="Diaplay name"
+                  name="displayName"
                   onChange={handleChange}
                   type="text"
-                  value={formState.values.lastName || ''}
+                  value={formState.values.displayName || ''}
                   variant="outlined"
                 />
                 <TextField
