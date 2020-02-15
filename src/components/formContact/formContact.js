@@ -7,8 +7,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
-import produce from 'immer';
-
 
 const companies = [
     {
@@ -105,7 +103,7 @@ export default function FormContract(props) {
   
   return (
     <div>
-        <Dialog open={props.open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <Dialog open={props.open} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">New Contract</DialogTitle>
         <DialogContent>
           <DialogContentText>
