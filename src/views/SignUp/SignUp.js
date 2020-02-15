@@ -50,7 +50,8 @@ const schema = {
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.default,
-    height: '100%'
+    height: '100%',
+    overflow: 'hidden'
   },
   grid: {
     height: '100%'
