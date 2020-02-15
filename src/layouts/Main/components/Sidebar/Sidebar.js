@@ -8,6 +8,7 @@ import List from '@material-ui/icons/ListAlt';
 import AddICon from '@material-ui/icons/Add';
 
 import { Profile, SidebarNav } from './components';
+import FormContract from '../../../../components/formContact';
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -34,9 +35,9 @@ const useStyles = makeStyles(theme => ({
 
 const Sidebar = props => {
   const { open, variant, onClose, className, ...rest } = props;
-
+  const [openContract, setOpenContract] = React.useState(false);
+  
   const classes = useStyles();
-
   const pages = [
     {
       title: 'Dashboard',
@@ -80,6 +81,15 @@ const Sidebar = props => {
     // }
   ];
 
+  const handleClickOpen = () => {
+    setOpenContract(true);
+  };
+
+  const handleClose = () => {
+    setOpenContract(false);
+  };
+
+
   return (
     <Drawer
       anchor="left"
@@ -99,10 +109,11 @@ const Sidebar = props => {
           pages={pages}
         />
         <Divider className={classes.divider} />
-        <Button variant="contained">
+        <Button variant="contained" onClick={handleClickOpen}>
           <AddICon style={{ paddingleft: 2, paddingBottom: 2 }} />
           New Contract
         </Button>
+        <FormContract open={openContract} close={handleClose}/>
         {/* <UpgradePlan /> */}
       </div>
     </Drawer>
