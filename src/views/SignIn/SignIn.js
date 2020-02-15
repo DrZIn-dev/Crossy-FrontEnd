@@ -34,7 +34,8 @@ const schema = {
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.default,
-    height: '100%'
+    height: '100%',
+    overflow: 'hidden'
   },
   grid: {
     height: '100%'
@@ -90,7 +91,7 @@ const useStyles = makeStyles(theme => ({
   contentBody: {
     flexGrow: 1,
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'start',
     [theme.breakpoints.down('md')]: {
       justifyContent: 'center'
     }
@@ -238,47 +239,7 @@ const SignIn = props => {
                 >
                   Sign in
                 </Typography>
-                <Typography
-                  color="textSecondary"
-                  gutterBottom
-                >
-                  Sign in with social media
-                </Typography>
-                <Grid
-                  className={classes.socialButtons}
-                  container
-                  spacing={2}
-                >
-                  <Grid item>
-                    <Button
-                      color="primary"
-                      onClick={handleSignIn}
-                      size="large"
-                      variant="contained"
-                    >
-                      <FacebookIcon className={classes.socialIcon} />
-                      Login with Facebook
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      onClick={handleSignIn}
-                      size="large"
-                      variant="contained"
-                    >
-                      <GoogleIcon className={classes.socialIcon} />
-                      Login with Google
-                    </Button>
-                  </Grid>
-                </Grid>
-                <Typography
-                  align="center"
-                  className={classes.sugestion}
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  or login with email address
-                </Typography>
+
                 <TextField
                   className={classes.textField}
                   error={hasError('email')}
