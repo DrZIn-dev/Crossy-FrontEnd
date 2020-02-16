@@ -416,6 +416,7 @@ const LatestOrders = props => {
           rate: 30,
           status: res
         });
+        return;
       });
     });
   };

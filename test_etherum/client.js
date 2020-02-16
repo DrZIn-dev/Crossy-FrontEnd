@@ -446,41 +446,41 @@ const data_mock = [
 //   console.log(res);
 // });
 
-// contract.methods
-//   .setState(3, 2)
-//   .send({ from: '0x5548bd4cf40cF011f543EcCA0ea4470B57F51Ef6', gas: 3000000 });
+contract.methods
+  .setState(14, 1)
+  .send({ from: '0x5548bd4cf40cF011f543EcCA0ea4470B57F51Ef6', gas: 3000000 });
 
-const subscribedEvents = {};
+// const subscribedEvents = {};
 
-const subscribeLogEvent = (contract, eventName) => {
-  const eventJsonInterface = web3.utils._.find(
-    contract._jsonInterface,
-    o => o.name === eventName && o.type === 'event'
-  );
+// const subscribeLogEvent = (contract, eventName) => {
+//   const eventJsonInterface = web3.utils._.find(
+//     contract._jsonInterface,
+//     o => o.name === eventName && o.type === 'event'
+//   );
 
-  const subscription = web3.eth.subscribe(
-    'logs',
-    {
-      address: contract.options.address,
-      topics: [eventJsonInterface.signature]
-    },
-    (error, result) => {
-      if (!error) {
-        const eventObj = web3.eth.abi.decodeLog(
-          eventJsonInterface.inputs,
-          result.data,
-          result.topics.slice(1)
-        );
-        console.log(`New ${eventName}!`, eventObj);
-      }
-    }
-  );
+//   const subscription = web3.eth.subscribe(
+//     'logs',
+//     {
+//       address: contract.options.address,
+//       topics: [eventJsonInterface.signature]
+//     },
+//     (error, result) => {
+//       if (!error) {
+//         const eventObj = web3.eth.abi.decodeLog(
+//           eventJsonInterface.inputs,
+//           result.data,
+//           result.topics.slice(1)
+//         );
+//         console.log(`New ${eventName}!`, eventObj);
+//       }
+//     }
+//   );
 
-  subscribedEvents[eventName] = subscription;
+//   subscribedEvents[eventName] = subscription;
 
-  console.log(
-    `subscribed to event '${eventName}' of contract '${contract.options.address}' `
-  );
-};
+//   console.log(
+//     `subscribed to event '${eventName}' of contract '${contract.options.address}' `
+//   );
+// };
 
-subscribeLogEvent(contract, 'UpdateState');
+// subscribeLogEvent(contract, 'UpdateState');
