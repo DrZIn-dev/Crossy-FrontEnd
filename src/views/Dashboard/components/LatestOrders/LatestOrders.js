@@ -69,7 +69,7 @@ const LatestOrders = props => {
 
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState({});
-
+  const [loading, setLoading] = React.useState(false);
   const abi = [
     {
       anonymous: false,
@@ -416,6 +416,7 @@ const LatestOrders = props => {
           rate: 30,
           status: res
         });
+        setLoading(true);
         return;
       });
     });
@@ -423,12 +424,16 @@ const LatestOrders = props => {
 
   const handleClickOpen = async id => {
     await fetchData(id);
-    await setOpen(true);
+    if (loading) {
+      await setOpen(true);
+    }
+    setLoading(false);
   };
 
   const handleClose = () => {
     setOpen(false);
     setData({});
+    setLoading(false);
   };
 
   return (
