@@ -406,21 +406,23 @@ const LatestOrders = props => {
 
   const fetchData = async id => {
     await contract.methods.getContract(id).call(async (err, result) => {
-      console.log(result);
-      await setData({
-        contractor: 'Me',
-        validator: result.issuer,
-        product: result.purchaseName,
-        pieces: result.purchaseAmount,
-        amount: result.amount,
-        rate: 30
+      contract.methods.getContractState(id).call((err, res) => {
+        setData({
+          contractor: 'Shen Zhi',
+          validator: result.issuer,
+          product: result.purchaseName,
+          pieces: result.purchaseAmount,
+          amount: result.amount,
+          rate: 30,
+          status: res
+        });
       });
     });
   };
 
-  const handleClickOpen = id => {
-    setOpen(true);
-    fetchData(id);
+  const handleClickOpen = async id => {
+    await fetchData(id);
+    await setOpen(true);
   };
 
   const handleClose = () => {
@@ -489,12 +491,6 @@ const LatestOrders = props => {
           </Button>
         </CardActions>
       </Card>
-      {/* <Dialog
-        aria-describedby="alert-dialog-description"
-        aria-labelledby="alert-dialog-title"
-        onClose={handleClose}
-        open={open}
-      /> */}
       <ShowContract
         close={handleClose}
         data={data}
