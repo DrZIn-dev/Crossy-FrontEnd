@@ -447,7 +447,7 @@ const data_mock = [
 // });
 
 contract.methods
-  .setState(14, 1)
+  .setState(15, 2)
   .send({ from: '0x5548bd4cf40cF011f543EcCA0ea4470B57F51Ef6', gas: 3000000 });
 
 // const subscribedEvents = {};
