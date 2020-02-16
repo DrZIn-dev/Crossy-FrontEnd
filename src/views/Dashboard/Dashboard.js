@@ -356,13 +356,29 @@ const Dashboard = () => {
   const contract = new web3.eth.Contract(abi, address);
 
   const fetchContract = async () => {
-    contract.methods.getCount().call(async (req, res) => {
+    contract.methods.getCount().call(async (err, res) => {
       let nums = Array.from(Array(parseInt(res)).keys());
       nums.map(num => {
-        contract.methods.getContract(num).call(async (req, res) => {
-          res.id = num;
-          setContractLst(prev => [...prev, res]);
-          console.log(contractLst);
+        contract.methods.getContract(num).call(async (err, res) => {
+          contract.methods.getContractState(num).call((err_2, res_2) => {
+            res.id = num;
+            switch (parseInt(res_2)) {
+              case 0:
+                res.state = 'Ongoing';
+                break;
+              case 1:
+                res.state = 'Inactive';
+                break;
+              case 2:
+                res.state = 'Completed';
+                break;
+              default:
+                res.state = 'Ongoing';
+                break;
+            }
+            setContractLst(prev => [...prev, res]);
+            console.log(contractLst);
+          });
         });
       });
     });

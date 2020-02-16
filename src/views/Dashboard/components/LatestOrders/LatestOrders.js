@@ -55,10 +55,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const statusColors = {
-  complete: 'success',
+  Completed: 'success',
   process: 'info',
-  cancle: 'danger',
-  pending: 'warning'
+  Inactive: 'danger',
+  Ongoing: 'warning'
 };
 
 const LatestOrders = props => {
@@ -465,10 +465,10 @@ const LatestOrders = props => {
                         <div className={classes.statusContainer}>
                           <StatusBullet
                             className={classes.status}
-                            color={statusColors[order.status]}
+                            color={statusColors[order.state]}
                             size="sm"
                           />
-                          {order.status}
+                          {order.state}
                         </div>
                       </TableCell>
                       <TableCell>{order.id}</TableCell>
