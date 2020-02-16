@@ -32,7 +32,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import JsonMock from './data_json';
-import { StatusBullet } from 'components';
+import { StatusBullet, ShowContract } from 'components';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -406,7 +406,15 @@ const LatestOrders = props => {
 
   const fetchData = id => {
     contract.methods.getContract(id).call((err, result) => {
-      setData({ name: result.issuer });
+      console.log(result);
+      setData({
+        contractor: 'Me',
+        validator: result.issuer,
+        product: result.purchaseName,
+        pieces: result.purchaseAmount,
+        amount: result.amount,
+        rate: 30
+      });
     });
   };
 
@@ -437,19 +445,7 @@ const LatestOrders = props => {
                     <TableCell>Status</TableCell>
                     <TableCell>Contract ID</TableCell>
                     <TableCell>Company</TableCell>
-                    <TableCell sortDirection="desc">
-                      <Tooltip
-                        enterDelay={300}
-                        title="Sort"
-                      >
-                        <TableSortLabel
-                          active
-                          direction="desc"
-                        >
-                          Duration
-                        </TableSortLabel>
-                      </Tooltip>
-                    </TableCell>
+                    <TableCell>Duration</TableCell>
                     <TableCell>Amount</TableCell>
                   </TableRow>
                 </TableHead>
@@ -493,51 +489,17 @@ const LatestOrders = props => {
           </Button>
         </CardActions>
       </Card>
-      <Dialog
+      {/* <Dialog
         aria-describedby="alert-dialog-description"
         aria-labelledby="alert-dialog-title"
         onClose={handleClose}
         open={open}
-      >
-        <DialogTitle
-          className={classes.dialogTitle}
-          id="alert-dialog-title"
-        >
-          <Grid
-            alignContent="center"
-            container
-            justify="center"
-            spacing={4}
-          >
-            <Grid
-              item
-              xs={10}
-            >
-              <Typography
-                style={{ marginTop: '18px' }}
-                variant="h3"
-              >
-                Contract Details
-              </Typography>
-            </Grid>
-            <Grid
-              item
-              xs={2}
-            >
-              <DialogActions>
-                <IconButton onClick={handleClose}>
-                  <CloseIcon />
-                </IconButton>
-              </DialogActions>
-            </Grid>
-          </Grid>
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {data.name}
-          </DialogContentText>
-        </DialogContent>
-      </Dialog>
+      /> */}
+      <ShowContract
+        close={handleClose}
+        data={data}
+        open={open}
+      />
     </>
   );
 };

@@ -358,6 +358,7 @@ const Dashboard = () => {
   const fetchContract = async () => {
     contract.methods.getCount().call(async (err, res) => {
       let nums = Array.from(Array(parseInt(res)).keys());
+      nums.reverse();
       nums.map(num => {
         contract.methods.getContract(num).call(async (err, res) => {
           contract.methods.getContractState(num).call((err_2, res_2) => {
