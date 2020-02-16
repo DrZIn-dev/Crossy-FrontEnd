@@ -404,10 +404,10 @@ const LatestOrders = props => {
 
   const contract = new web3.eth.Contract(abi, address);
 
-  const fetchData = id => {
-    contract.methods.getContract(id).call((err, result) => {
+  const fetchData = async id => {
+    await contract.methods.getContract(id).call(async (err, result) => {
       console.log(result);
-      setData({
+      await setData({
         contractor: 'Me',
         validator: result.issuer,
         product: result.purchaseName,
